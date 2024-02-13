@@ -108,7 +108,7 @@ btn:visited {
 }
 .btn--secondary:link,
 .btn--secondary:visited {
-  border: 2px solid #4d602a;
+  border: 1px solid #4d602a;
 }
 .btn--main:hover,
 .btn--main:active {
