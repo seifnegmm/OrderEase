@@ -11,6 +11,7 @@ const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
 const nav = document.querySelector(".nav");
 const mainBtn = document.querySelector(".btn--main");
+const sections = document.querySelectorAll(".section");
 
 //Implementing the mobile nav bar
 
@@ -88,8 +89,6 @@ btnLeft.addEventListener("click", prevSlide);
 
 //Implementing sticky nav
 
-//not functioning properly
-
 const navHeight = nav.getBoundingClientRect().height;
 
 const stickyNav = function (entries) {
@@ -105,6 +104,26 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 
 headerObserver.observe(heroSection);
+
+//Implementing the revealing section effect
+
+const revealSection = function (entries) {
+  const [entry] = entries;
+  if (entry.isIntersecting) {
+    entry.target.classList.remove("section--hidden");
+    sectionObserver.unobserve(entry.target);
+  }
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+sections.forEach((section) => {
+  section.classList.add("section--hidden");
+  sectionObserver.observe(section);
+});
 
 //Implementing the copyright year dynamically
 
